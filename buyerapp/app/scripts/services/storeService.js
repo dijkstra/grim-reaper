@@ -6,6 +6,7 @@ angular.module('shit.services.StoreService',[])
     var mockedData = {
         "/sellers/1/items": [
             {
+                _id: "1",
                 sellerId: "1",
                 title: "Bullar",
                 amount: 2,
@@ -15,6 +16,7 @@ angular.module('shit.services.StoreService',[])
                 startTime: new Date(),
                 endTIme: new Date()
             },{
+                _id: "2",
                 sellerId: "1",
                 title: "Bullar",
                 amount: 2,
@@ -24,6 +26,7 @@ angular.module('shit.services.StoreService',[])
                 startTime: new Date(),
                 endTIme: new Date()
             },{
+                _id: "3",
                 sellerId: "1",
                 title: "Bullar",
                 amount: 2,
@@ -35,6 +38,7 @@ angular.module('shit.services.StoreService',[])
             }
         ],
         "/sellers/2/items": [{
+                _id: "4",
                 sellerId: "2",
                 title: "Bullar",
                 amount: 2,
@@ -61,8 +65,20 @@ angular.module('shit.services.StoreService',[])
     function getAllStores(params) {
 
         return getMocked("/sellers");
+        return BaseService.httpGet({
+            url: '/items',
+            httpOpts: {
+                params: params
+            }
+        });
+    }
+
+    function getStoreById(id, params) {
+        return getMocked("/sellers").then(function(data) {
+            return data[id];
+        });
         // return BaseService.httpGet({
-        //     url: '/items',
+        //     url: '/sellers/' + id,
         //     httpOpts: {
         //         params: params
         //     }
@@ -93,6 +109,7 @@ angular.module('shit.services.StoreService',[])
 
     return {
         getAllStores: getAllStores,
+        getStoreById: getStoreById,
         getItemsForStore: getItemsForStore
     };
 

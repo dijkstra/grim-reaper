@@ -28,12 +28,17 @@ angular
       .when('/', {
         templateUrl: 'views/discoverStores.html',
         controller: 'DiscoverStoresCtrl',
-        controllerAs: 'discovery'
+        controllerAs: 'discoverStore'
       })
       .when('/random', {
         templateUrl: 'views/discovery.html',
         controller: 'DiscoveryCtrl',
         controllerAs: 'discovery'
+      })
+      .when('/store/:storeId/item/:itemId', {
+        templateUrl: 'views/itemDetails.html',
+        controller: 'ItemDetailsCtrl',
+        controllerAs: 'itemDetails'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

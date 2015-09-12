@@ -5,5 +5,9 @@
         <p data-ng-bind="::data.description"></p>
         <p>Price: <span data-ng-bind="::data.price"></span></p>
         <p>Quantity: <span data-ng-bind="::data.amount"></span></p>
+        <form id="checkout" method="post" action="/checkout">
+            <div id="payment-form"></div>
+            <input type="submit" value="Pay $10">
+        </form>
     </section>
 </div>

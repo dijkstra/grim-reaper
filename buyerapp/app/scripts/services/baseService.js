@@ -3,10 +3,11 @@
 angular.module('shit.services.BaseService',[])
 .service('BaseService', ['$q','$http', function($q, $http) {
 
+    var BASE_URL = "http://146.148.25.35/api";
     function httpGet(options, dataTransformer) {
 
         var deferred = $q.defer();
-        $http.get(options.url, options.httpOpts)
+        $http.get(BASE_URL + options.url, options.httpOpts)
             .success(function(data) {
                 if (dataTransformer && typeof dataTransformer === 'function') {
                     dataTransformer(data);
