@@ -3,6 +3,7 @@ var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
 var multiparty = require('multiparty');
+var mime       = require('mime');
 
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/shit');
@@ -14,6 +15,7 @@ var gfs;
 conn.once('open', function () {
     console.log('open');
     gfs = Grid(conn.db);
+
 });
 
 var fs = require('fs');
@@ -185,7 +187,34 @@ router.route('/images')
     }
 
   });
+});
 
+// GET IMAGE
+router.route('/images/:id')
+.get(function(req, res) {
+
+  console.log('get file');
+
+  gfs.findOne({ _id: req.params.id }, function (err, file) {
+    if (err) return res.status(400).send(err);
+    if (!file) return res.status(404).send('');
+
+    console.log(file);
+
+    // res.set('Content-Type', mime(file.filename));
+    //res.set('Content-Disposition', 'attachment; filename="' + file.filename + '"');
+
+    var readstream = gfs.createReadStream({
+      _id: file._id
+    });
+
+    readstream.on("error", function(err) {
+      console.log("Got error while processing stream " + err.message);
+      res.end();
+    });
+
+    readstream.pipe(res);
+  });
 });
 
 
@@ -198,6 +227,16 @@ process.on('uncaughtException', function (err) {
   console.log('\n\nKaboom!');
   console.log(err);
 });
+
+
+
+
+
+
+
+
+
+
 
 
 
