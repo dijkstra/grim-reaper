@@ -4,6 +4,7 @@ var app        = express();
 var bodyParser = require('body-parser');
 var multiparty = require('multiparty');
 var mime       = require('mime');
+var conf       = require('./conf')
 
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/shit');
@@ -33,14 +34,21 @@ app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;
 
-
 var router = express.Router();
+
+
+
+function transformImageUrl(item) {
+  if (item.imageId) {
+    console.log('Setting image Id for', item);
+    item.imageId = 'http://' + conf.IMAGEBASE + '/api/images/' + item.imageId
+  }
+}
+
 
 // Cover-all middleware
 router.use(function(req, res, next) {
   console.log('Something is happening.');
-
-  console.log(req);
 
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
@@ -106,6 +114,10 @@ router.route('/sellers/:id/items')
       if (err)
         console.log(err);
 
+      items.forEach(function (item) {
+        transformImageUrl(item);
+      });
+
       res.json(items);
     });
   });
@@ -124,6 +136,7 @@ router.route('/items')
   item.price = req.body.price;
   item.endTime = req.body.endTime;
   item.imageId = req.body.imageId;
+  item.startTime = new Date();
 
   item.save(function(err) {
     if (err)
@@ -132,11 +145,16 @@ router.route('/items')
     res.json(item);
   });
 })
+// LIST ALL ITEMS
 .get(function(req, res) {
 
   Item.find(function(err, items) {
     if (err)
       res.send(err);
+
+    items.forEach(function (item) {
+      transformImageUrl(item);
+    });
 
     res.json(items);
   });
@@ -148,6 +166,8 @@ router.route('/items/:id')
   Item.findById(req.params.id, function(err, item) {
     if (err)
       res.send(err);
+
+    transformImageUrl(item);
     res.json(item);
   });
 });

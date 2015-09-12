@@ -16,10 +16,12 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'shit.directives.listOfStores',
     'shit.directives.listOfShit',
     'shit.directives.shitItem',
     'shit.services.BaseService',
-    'shit.services.ItemService'
+    'shit.services.ItemService',
+    'shit.services.StoreService'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -27,6 +29,17 @@ angular
         templateUrl: 'views/discovery.html',
         controller: 'DiscoveryCtrl',
         controllerAs: 'discovery'
+      })
+      .when('/stores', {
+        templateUrl: 'views/discoverStores.html',
+        controller: 'DiscoverStoresCtrl',
+        controllerAs: 'discoverStore'
+      })
+
+      .when('/stores/:storeId/items/:itemId', {
+        templateUrl: 'views/itemDetails.html',
+        controller: 'ItemDetailsCtrl',
+        controllerAs: 'itemDetails'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
