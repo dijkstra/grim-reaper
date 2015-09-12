@@ -39,6 +39,9 @@ var router = express.Router();
 // Cover-all middleware
 router.use(function(req, res, next) {
   console.log('Something is happening.');
+
+  console.log(req);
+
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
   res.set('Access-Control-Allow-Headers', 'content-type');
@@ -120,6 +123,7 @@ router.route('/items')
   item.amount = req.body.amount;
   item.price = req.body.price;
   item.endTime = req.body.endTime;
+  item.imageId = req.body.imageId;
 
   item.save(function(err) {
     if (err)
