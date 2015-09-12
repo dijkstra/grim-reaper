@@ -98,7 +98,11 @@ router.route('/items')
 .post(function(req, res) {
 
   var item = new Item();
-  item.name = req.body.name;
+  item.title = req.body.title;
+  item.sellerId = req.body.sellerId;
+  item.amount = req.body.amount;
+  item.price = req.body.price;
+  item.endTime = req.body.endTime;
 
   item.save(function(err) {
     if (err)
