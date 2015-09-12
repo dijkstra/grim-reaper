@@ -1,11 +1,11 @@
-<form>
+<form ng-submit="submit()">
   <div class="form-group">
     <label for="productName">Product</label>
-    <input type="text" class="form-control" id="productName" placeholder="Product Name">
+    <input type="text" class="form-control" id="productName" placeholder="Product Name" ng-model="productName">
   </div>
   <div class="form-group">
     <label for="productAmount">Amount</label>
-    <input type="number" class="form-control" id="productAmount" placeholder="Amount in pcs's">
+    <input type="number" class="form-control" id="productAmount" placeholder="Amount in pcs's" ng-model="productAmount">
   </div>
   <div class="form-group">
     <label for="productPicture">File input</label>
@@ -17,12 +17,12 @@
     <!-- </div> -->
   </div>
   <div class="form-group">
-    <label for="productStartPrice">Amount</label>
-    <input type="number" class="form-control" id="productStartPrice" placeholder="Price in SEK">
+    <label for="productStartPrice">Starting Price</label>
+    <input type="number" class="form-control" id="productStartPrice" placeholder="Starting Price in SEK" ng-model="productStartPrice">
   </div>
   <div class="form-group">
-    <label for="productFinalPrice">Amount</label>
-    <input type="number" class="form-control" id="productFinalPrice" placeholder="Price in SEK">
+    <label for="productFinalPrice">Final Price</label>
+    <input type="number" class="form-control" id="productFinalPrice" placeholder="Final Price in SEK" ng-model="productFinalPrice">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
