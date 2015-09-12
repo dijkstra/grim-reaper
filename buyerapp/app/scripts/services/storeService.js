@@ -6,7 +6,7 @@ angular.module('shit.services.StoreService',[])
     var mockedData = {
         "/sellers/1/items": [
             {
-                sellerId: "seller",
+                sellerId: "1",
                 title: "Bullar",
                 amount: 2,
                 price: 10,
@@ -15,7 +15,7 @@ angular.module('shit.services.StoreService',[])
                 startTime: new Date(),
                 endTIme: new Date()
             },{
-                sellerId: "seller",
+                sellerId: "1",
                 title: "Bullar",
                 amount: 2,
                 price: 10,
@@ -24,7 +24,7 @@ angular.module('shit.services.StoreService',[])
                 startTime: new Date(),
                 endTIme: new Date()
             },{
-                sellerId: "seller",
+                sellerId: "1",
                 title: "Bullar",
                 amount: 2,
                 price: 10,
@@ -34,15 +34,31 @@ angular.module('shit.services.StoreService',[])
                 endTIme: new Date()
             }
         ],
+        "/sellers/2/items": [{
+                sellerId: "2",
+                title: "Bullar",
+                amount: 2,
+                price: 10,
+                image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTl9dM8_6uvC6hkMHUW_zpqS-MkCfOIkb3ofGa2ldLV_NSRKH8961uvNA",
+                description: "Fyra jättegoda bullar som vad bakade 10 timmar sedan.",
+                startTime: new Date(),
+                endTIme: new Date()
+            }],
         "/sellers": [{
             "_id": "1",
             "name":"Eriks teashop",
             "description": "Some fine stuff here",
             "address": "Drottninggatan 12"
+        },
+        {
+            "_id": "2",
+            "name":"Kostas drugstore",
+            "description": "Some fine stuff here",
+            "address": "Drottninggatan 81"
         }]
     };
 
-    function getAllItems(params) {
+    function getAllStores(params) {
 
         return getMocked("/sellers");
         // return BaseService.httpGet({
@@ -56,6 +72,12 @@ angular.module('shit.services.StoreService',[])
     function getItemsForStore(id, params) {
 
         return getMocked("/sellers/" + id + "/items");
+        // return BaseService.httpGet({
+        //     url: '/sellers/' + id + '/items',
+        //     httpOpts: {
+        //         params: params
+        //     }
+        // });
     }
 
     function getMocked(path) {
