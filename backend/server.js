@@ -40,6 +40,7 @@ var router = express.Router();
 
 function transformImageUrl(item) {
   if (item.imageId) {
+    console.log('Setting image Id for', item);
     item.imageId = 'http://' + conf.IMAGEBASE + '/api/images/' + item.imageId
   }
 }
@@ -135,6 +136,7 @@ router.route('/items')
   item.price = req.body.price;
   item.endTime = req.body.endTime;
   item.imageId = req.body.imageId;
+  item.startTime = new Date();
 
   item.save(function(err) {
     if (err)
