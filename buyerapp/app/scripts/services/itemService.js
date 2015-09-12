@@ -10,7 +10,25 @@ angular.module('shit.services.ItemService',[])
                 title: "Bullar",
                 amount: 2,
                 price: 10,
-                image: "coolimage.jpg",
+                image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTl9dM8_6uvC6hkMHUW_zpqS-MkCfOIkb3ofGa2ldLV_NSRKH8961uvNA",
+                description: "Fyra jättegoda bullar som vad bakade 10 timmar sedan.",
+                startTime: new Date(),
+                endTIme: new Date()
+            },{
+                sellerId: "seller",
+                title: "Bullar",
+                amount: 2,
+                price: 10,
+                image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTl9dM8_6uvC6hkMHUW_zpqS-MkCfOIkb3ofGa2ldLV_NSRKH8961uvNA",
+                description: "Fyra jättegoda bullar som vad bakade 10 timmar sedan.",
+                startTime: new Date(),
+                endTIme: new Date()
+            },{
+                sellerId: "seller",
+                title: "Bullar",
+                amount: 2,
+                price: 10,
+                image: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTl9dM8_6uvC6hkMHUW_zpqS-MkCfOIkb3ofGa2ldLV_NSRKH8961uvNA",
                 description: "Fyra jättegoda bullar som vad bakade 10 timmar sedan.",
                 startTime: new Date(),
                 endTIme: new Date()

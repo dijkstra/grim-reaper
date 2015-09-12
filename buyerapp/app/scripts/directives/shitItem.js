@@ -10,7 +10,10 @@ angular.module('shit.directives.shitItem', [])
             data: '=',
             stateRef: '@'
         },
-        templateUrl: '/views/directives/shitItem.html'
+        templateUrl: '/views/directives/shitItem.html',
+        link: function(scope, element) {
+            console.log("Item scopes data", scope.data);
+        }
         // controller: ['$scope', '$element', '$window',  function($scope, $element, $window) {
 
 

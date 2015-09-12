@@ -10,7 +10,10 @@ angular.module('shit.directives.listOfShit', [])
             data: '=',
             stateRef: '@'
         },
-        templateUrl: 'views/directives/listOfShit.html'
+        templateUrl: 'views/directives/listOfShit.html',
+        link: function(scope, element) {
+            // console.log("Scopes data", scope.data);
+        }
         // controller: ['$scope', '$element', '$window',  function($scope, $element, $window) {
 
 
