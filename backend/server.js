@@ -107,6 +107,15 @@ router.route('/items')
     res.json(item);
   });
 })
+.get(function(req, res) {
+
+  Item.find(function(err, items) {
+    if (err)
+      res.send(err);
+
+    res.json(items);
+  });
+});
 
 // GET ITEM BY ID
 router.route('/items/:id')
