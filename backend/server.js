@@ -2,10 +2,21 @@
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
+var multiparty = require('multiparty');
 
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/shit');
+var conn       = mongoose.connection;
+var Grid       = require('gridfs-stream');
+Grid.mongo     = mongoose.mongo;
+var gfs;
 
+conn.once('open', function () {
+    console.log('open');
+    gfs = Grid(conn.db);
+});
+
+var fs = require('fs');
 
 // Models
 // #############################
@@ -27,6 +38,7 @@ var router = express.Router();
 router.use(function(req, res, next) {
   console.log('Something is happening.');
   res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
   next();
 });
 
@@ -130,6 +142,50 @@ router.route('/items/:id')
       res.send(err);
     res.json(item);
   });
+});
+
+
+// STORE IMAGE
+router.route('/images')
+.post(function(req, res) {
+
+  console.log(req.body);
+  console.log('image upload');
+
+  var form = new multiparty.Form();
+
+  form.parse(req, function(err, fields, files) {
+    
+    console.log(fields);
+    console.log(files);  //Remember: this assumes the files contains a property called "image"
+    if (files.image.length > 0) {
+
+      var file = files.image[0];
+      console.log(file.originalFilename);
+      console.log(file.path);
+      console.log(file.headers['content-type']);
+
+      var writestream = gfs.createWriteStream({
+        filename: file.originalFilename
+      });
+      fs.createReadStream(file.path).pipe(writestream);
+   
+      writestream.on('close', function (savedfile) {
+          // do something with `file`
+          console.log(savedfile.filename + 'Written To DB');
+          console.log(savedfile);
+
+          res.json({
+            fileId: savedfile['_id']
+          });
+      });
+
+    } else {
+      throw new Error('No files received');
+    }
+
+  });
+
 });
 
 
