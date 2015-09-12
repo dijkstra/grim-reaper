@@ -136,6 +136,7 @@ router.route('/items')
   item.price = req.body.price;
   item.endTime = req.body.endTime;
   item.imageId = req.body.imageId;
+  item.startTime = new Date();
 
   item.save(function(err) {
     if (err)

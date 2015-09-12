@@ -14,7 +14,7 @@ curl -H "Content-Type: application/json" -X POST -d \
 create item:
 
 curl -H "Content-Type: application/json" -X POST -d \
-    '{"title" : "Bulle", "endTime" : "2015-09-12T19:00:00Z", "price" : 10, "amount" : 5, "sellerId" : "55f442927ddd3ada0a000001"}' \
+    '{"title" : "Bulle", "endTime" : "2015-09-12T19:00:00Z", "price" : 10, "amount" : 5, "sellerId" : "55f442927ddd3ada0a000001", "imageId": "55f498628db5c40000000001"}' \
     http://146.148.25.35/api/items
 
 
