@@ -12,11 +12,14 @@ angular.module('shit.directives.shitItem', [])
         },
         templateUrl: '/views/directives/shitItem.html',
         link: function(scope, element) {
-            console.log("Item scopes data", scope.data);
-        }
-        // controller: ['$scope', '$element', '$window',  function($scope, $element, $window) {
-
-
-        // }]
+            scope.selectItem = function() {
+                console.log("clicked item");
+            }
+        },
+        controller: ['$scope', '$element', '$window',  function($scope, $element, $window) {
+            $scope.selectItem = function() {
+                console.log("clicked item");
+            }
+        }]
     };
 }]);

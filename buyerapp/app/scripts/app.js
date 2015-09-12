@@ -38,8 +38,6 @@ angular
       });
   });
 
-console.log("App.js has been loaded in");
-
   // .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
 
