@@ -124,6 +124,10 @@ app.use('/api', router);
 app.listen(port);
 console.log('Magic happens on port ' + port);
 
+process.on('uncaughtException', function (err) {
+  console.log('\n\nKaboom!');
+  console.log(err);
+});
 
 
 
