@@ -16,16 +16,23 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'shit.directives.listOfStores',
     'shit.directives.listOfShit',
     'shit.directives.shitItem',
     'shit.services.BaseService',
-    'shit.services.ItemService'
+    'shit.services.ItemService',
+    'shit.services.StoreService'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/discovery.html',
         controller: 'DiscoveryCtrl',
+        controllerAs: 'discovery'
+      })
+      .when('/', {
+        templateUrl: 'views/discoverStores.html',
+        controller: 'DiscoverStoresCtrl',
         controllerAs: 'discovery'
       })
       .when('/about', {

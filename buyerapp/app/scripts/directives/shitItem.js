@@ -14,12 +14,12 @@ angular.module('shit.directives.shitItem', [])
         link: function(scope, element) {
             scope.selectItem = function() {
                 console.log("clicked item");
-            }
+            };
         },
         controller: ['$scope', '$element', '$window',  function($scope, $element, $window) {
             $scope.selectItem = function() {
                 console.log("clicked item");
-            }
+            };
         }]
     };
 }]);
