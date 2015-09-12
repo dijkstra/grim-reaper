@@ -41,6 +41,8 @@ router.use(function(req, res, next) {
   console.log('Something is happening.');
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
+  res.set('Access-Control-Allow-Headers', 'content-type');
+  
   next();
 });
 
@@ -202,7 +204,6 @@ router.route('/images/:id')
     console.log(file);
 
     // res.set('Content-Type', mime(file.filename));
-    //res.set('Content-Disposition', 'attachment; filename="' + file.filename + '"');
 
     var readstream = gfs.createReadStream({
       _id: file._id
