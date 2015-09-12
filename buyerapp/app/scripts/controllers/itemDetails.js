@@ -15,6 +15,11 @@ angular.module('shitForSaleApp')
                 $scope.item = item;
             });
 
+            $scope.updatePrice = function(valu) {
+                console.log("update the price", valu);
+                $scope.totalPrice = valu * item.price;
+            };
+
             // StoreService.getItemsForStore($routeParams.storeId).then(function(items) {
             //     items.forEach(function(item) {
             //         console.log("get items", item);

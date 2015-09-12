@@ -1,5 +1,5 @@
-<div class="shit-item" ng-click="selectItem">
-    <img ng-src="{{::item.imageUrl}}"/>
+<div class="item-details" ng-click="selectItem">
+    <img class="item-image" ng-src="{{::item.imageId}}"/>
     <section>
         <header data-ng-bind="::item.title"></header>
         <p data-ng-bind="::item.description"></p>
@@ -9,8 +9,8 @@
 
         <form id="checkout" method="post" action="/checkout">
             <div id="payment-form"></div>
-            <input type="number" min="1" max="{{item.amount}}" value="1">
-            <input type="submit" value="Pay $10">
+            <input type="number" ng-change="updatePrice()" ng-model="quantity" min="1" max="{{item.amount}}" value="1">
+            <input type="submit" value="Pay {{totalPrice}}">
         </form>
     </section>
 </div>
