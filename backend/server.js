@@ -26,6 +26,7 @@ var router = express.Router();
 // Cover-all middleware
 router.use(function(req, res, next) {
   console.log('Something is happening.');
+  res.set('Access-Control-Allow-Origin', '*');
   next();
 });
 
