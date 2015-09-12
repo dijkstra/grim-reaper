@@ -8,7 +8,7 @@
  * Controller of the hackApp
  */
 angular.module('hackApp')
-  .controller('AboutCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('NewProductCtrl', ['$scope', '$http', function ($scope, $http) {
   	$scope.pictureTaken = false;
   	$scope.picture = null;
   	$scope.pictureURL = '';
@@ -113,14 +113,5 @@ angular.module('hackApp')
                     console.log(response);
                   });
         }
-        // var fd = new FormData();
-        // //Take the first selected file
-        // fd.append("file", files[0]);
-
-        // $http.post(uploadUrl, fd, {
-        //     withCredentials: true,
-        //     headers: {'Content-Type': undefined },
-        //     transformRequest: angular.identity
-        // }).success( ...all right!... ).error( ..damn!... );
     };
   }]);
