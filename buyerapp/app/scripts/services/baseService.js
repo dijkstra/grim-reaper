@@ -3,11 +3,11 @@
 angular.module('shit.services.BaseService',[])
 .service('BaseService', ['$q','$http', function($q, $http) {
 
-    var BASE_URL = "http://146.148.25.35/api";
+    var APIBASE = "http://146.148.25.35/api";
     function httpGet(options, dataTransformer) {
 
         var deferred = $q.defer();
-        $http.get(BASE_URL + options.url, options.httpOpts)
+        $http.get(APIBASE + options.url, options.httpOpts)
             .success(function(data) {
                 if (dataTransformer && typeof dataTransformer === 'function') {
                     dataTransformer(data);
@@ -21,7 +21,7 @@ angular.module('shit.services.BaseService',[])
     function httpPost(options, dataTransformer) {
 
         var deferred = $q.defer();
-        $http.post(options.url, options.body, options.httpOpts)
+        $http.post(APIBASE + options.url, options.body, options.httpOpts)
             .success(function(data) {
                 if (dataTransformer && typeof dataTransformer === 'function') {
                     dataTransformer(data);
@@ -35,7 +35,7 @@ angular.module('shit.services.BaseService',[])
     function httpPut(options, dataTransformer) {
 
         var deferred = $q.defer();
-        $http.put(options.url, options.body, options.httpOpts)
+        $http.put(APIBASE + options.url, options.body, options.httpOpts)
             .success(function(data) {
                 if (dataTransformer && typeof dataTransformer === 'function') {
                     dataTransformer(data);

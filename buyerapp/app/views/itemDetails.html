@@ -1,12 +1,15 @@
 <div class="shit-item" ng-click="selectItem">
-    <img ng-src="{{::data.image}}"/>
+    <img ng-src="{{::item.image}}"/>
     <section>
-        <header data-ng-bind="::data.title"></header>
-        <p data-ng-bind="::data.description"></p>
-        <p>Price: <span data-ng-bind="::data.price"></span></p>
-        <p>Quantity: <span data-ng-bind="::data.amount"></span></p>
+        <header data-ng-bind="::item.title"></header>
+        <p data-ng-bind="::item.description"></p>
+        <p>Price: <span data-ng-bind="::item.price"></span></p>
+        <p>Quantity: <span data-ng-bind="::item.amount"></span></p>
+
+
         <form id="checkout" method="post" action="/checkout">
             <div id="payment-form"></div>
+            <input type="number" min="1" max="{{item.amount}}" value="1">
             <input type="submit" value="Pay $10">
         </form>
     </section>

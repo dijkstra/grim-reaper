@@ -64,9 +64,9 @@ angular.module('shit.services.StoreService',[])
 
     function getAllStores(params) {
 
-        return getMocked("/sellers");
+        // return getMocked("/sellers");
         return BaseService.httpGet({
-            url: '/items',
+            url: '/sellers',
             httpOpts: {
                 params: params
             }
@@ -74,26 +74,26 @@ angular.module('shit.services.StoreService',[])
     }
 
     function getStoreById(id, params) {
-        return getMocked("/sellers").then(function(data) {
-            return data[id];
-        });
-        // return BaseService.httpGet({
-        //     url: '/sellers/' + id,
-        //     httpOpts: {
-        //         params: params
-        //     }
+        // return getMocked("/sellers").then(function(data) {
+        //     return data[id];
         // });
+        return BaseService.httpGet({
+            url: '/sellers/' + id,
+            httpOpts: {
+                params: params
+            }
+        });
     }
 
     function getItemsForStore(id, params) {
 
-        return getMocked("/sellers/" + id + "/items");
-        // return BaseService.httpGet({
-        //     url: '/sellers/' + id + '/items',
-        //     httpOpts: {
-        //         params: params
-        //     }
-        // });
+        // return getMocked("/sellers/" + id + "/items");
+        return BaseService.httpGet({
+            url: '/sellers/' + id + '/items',
+            httpOpts: {
+                params: params
+            }
+        });
     }
 
     function getMocked(path) {
