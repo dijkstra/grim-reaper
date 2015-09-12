@@ -6,7 +6,7 @@ create seller:
 
 curl -H "Content-Type: application/json" -X POST -d \
     '{"name":"Eriks teashop", "address": "Drottninggatan 12"}' \
-    http://localhost:8080/api/sellers
+    http://146.148.25.35/api/sellers
 
 
 
@@ -14,15 +14,13 @@ curl -H "Content-Type: application/json" -X POST -d \
 create item:
 
 curl -H "Content-Type: application/json" -X POST -d \
-    '{"name":"Eriks teashop", "address": "Drottninggatan 12"}' \
-    http://localhost:8080/api/sellers
+    '{"title" : "Bulle", "endTime" : "2015-09-12T19:00:00Z", "price" : 10, "amount" : 5, "sellerId" : "55f442927ddd3ada0a000001"}' \
+    http://146.148.25.35/api/items
 
-var item = new Item();
-item.sellerId = "55f434732475640000000001";
-item.title = "Bulle2";
-item.amount = 5;
-item.price = 10;
-item.endTime = new Date('2015-09-12 21:00');
+
+curl -H "Content-Type: application/json" -X POST -d \
+    '{"title" : "Bulle", "endTime" : "2015-09-12T19:00:00Z", "price" : 10, "amount" : 5, "sellerId" : "55f442927ddd3ada0a000001"}' \
+    http://localhost:8080/api/items
 
 
 
@@ -37,6 +35,9 @@ get items by seller:
 curl     http://localhost:8080/api/sellers/55f434732475640000000001/items
 
 
+post images
+
+curl -v -X POST -F "image=@/Users/wallenius/Downloads/walter.jpg" http://146.148.25.35/api/images
 
 
 
@@ -56,7 +57,8 @@ git clone git@github.com:dijkstra/grim-reaper.git
 
 cd grim-reaper/backend/
 npm install
-node server.js
+sudo PORT=80 node server.js
+
 
 
 
