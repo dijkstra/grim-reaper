@@ -40,7 +40,7 @@ var router = express.Router();
 
 function transformImageUrl(item) {
   if (item.imageId) {
-    item.imageId = 'http://' + conf.IMAGEBASE + '/api/images/' + item.imageId
+    item.imageUrl = 'http://' + conf.IMAGEBASE + '/api/images/' + item.imageId
   }
 }
 
