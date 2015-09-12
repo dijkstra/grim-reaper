@@ -1,0 +1,28 @@
+<form>
+  <div class="form-group">
+    <label for="productName">Product</label>
+    <input type="text" class="form-control" id="productName" placeholder="Product Name">
+  </div>
+  <div class="form-group">
+    <label for="productAmount">Amount</label>
+    <input type="number" class="form-control" id="productAmount" placeholder="Amount in pcs's">
+  </div>
+  <div class="form-group">
+    <label for="productPicture">File input</label>
+    <input type="file" id="productPicture" accept="image/*" onchange="angular.element(this).scope().previewImage(this)"/>
+    <p class="help-block">Take a picture of the product</p>
+    <!-- <div ng-show="pictureTaken" class="pictureContainer"> -->
+    	<img id="productPicturePreview" src="{{pictureURL}}"/>
+
+    <!-- </div> -->
+  </div>
+  <div class="form-group">
+    <label for="productStartPrice">Amount</label>
+    <input type="number" class="form-control" id="productStartPrice" placeholder="Price in SEK">
+  </div>
+  <div class="form-group">
+    <label for="productFinalPrice">Amount</label>
+    <input type="number" class="form-control" id="productFinalPrice" placeholder="Price in SEK">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
