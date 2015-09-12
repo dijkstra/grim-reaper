@@ -35,5 +35,8 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "q": "^1.4.1"
   }
 }
