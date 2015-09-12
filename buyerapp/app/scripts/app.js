@@ -26,16 +26,17 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/discoverStores.html',
-        controller: 'DiscoverStoresCtrl',
-        controllerAs: 'discoverStore'
-      })
-      .when('/random', {
         templateUrl: 'views/discovery.html',
         controller: 'DiscoveryCtrl',
         controllerAs: 'discovery'
       })
-      .when('/store/:storeId/item/:itemId', {
+      .when('/stores', {
+        templateUrl: 'views/discoverStores.html',
+        controller: 'DiscoverStoresCtrl',
+        controllerAs: 'discoverStore'
+      })
+
+      .when('/stores/:storeId/items/:itemId', {
         templateUrl: 'views/itemDetails.html',
         controller: 'ItemDetailsCtrl',
         controllerAs: 'itemDetails'
