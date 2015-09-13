@@ -2,7 +2,7 @@
 	<div class="panel-heading" role="tab" id="heading{{$index}}">
 	  <h4 class="panel-title">
 	    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
-	      {{ product.title }} - Price: {{ product.price }} - Quant. {{ product.amount }}
+	      {{ product.title }} - Price: {{ product.finalPrice | number : 2 }} - Quant. {{ product.amount }}
 	    </a>
 	  </h4>
 	</div>

@@ -20,6 +20,9 @@ angular.module('shit.directives.listOfShit', [])
 		    // start the UI update process; save the timeoutId for canceling
 		    timeoutId = $interval(function() {
 		    	scope.data.forEach(function (product) {
+		    		if (typeof product.finalPrice === 'undefined') {
+		    			product.finalPrice = product.price;
+		    		}
 		    		var t1 = product.startTime.getTime();
 		    		var t2 = product.endTime.getTime();
 		    		var t = Date.now();
@@ -27,7 +30,7 @@ angular.module('shit.directives.listOfShit', [])
 
 		    		var p = (t-t1)*100/(t2-t1);
 
-		    		product.price = product.price*((100-p)/100);
+		    		product.finalPrice = product.price*((100-p)/100);
 		    	});
 		    	// console.log(scope)
 		      //updateTime(); // update DOM
