@@ -192,13 +192,17 @@ router.route('/sellers/:id/items')
 
     Item.findBySellerId(seller._id, function(err, items) {
       if (err)
-        console.log(err);
-
-      items.forEach(function (item) {
+        res.send(err);
+        // console.log(err);
+      var currentTime = new Date();
+      var filterdItems = items.filter(function(item) {
+        return item.amount > 0 && item.endDate > currentTime
+      });
+      filterdItems.forEach(function (item) {
         transformImageUrl(item);
       });
 
-      res.json(items);
+      res.json(filterdItems);
     });
   });
 
