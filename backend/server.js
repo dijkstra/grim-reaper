@@ -50,7 +50,6 @@ var router = express.Router();
 
 function transformImageUrl(item) {
   if (item.imageId) {
-    console.log('Setting image Id for', item);
     item.imageId = 'http://' + conf.IMAGEBASE + '/api/images/' + item.imageId
   }
 }
@@ -58,7 +57,11 @@ function transformImageUrl(item) {
 
 // Cover-all middleware
 router.use(function(req, res, next) {
-  console.log('Something is happening.');
+  console.log('\n\n############');
+  console.log(req.originalUrl);
+  console.log(req.body);
+
+
 
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
@@ -313,8 +316,6 @@ router.route('/images/:id')
   gfs.findOne({ _id: req.params.id }, function (err, file) {
     if (err) return res.status(400).send(err);
     if (!file) return res.status(404).send('');
-
-    console.log(file);
 
     // res.set('Content-Type', mime(file.filename));
 
