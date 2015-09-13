@@ -1,9 +1,9 @@
 <div class="shit-item" ng-click="selectItem">
-    <img class="item-image" ng-src="{{::data.imageId}}"/>
+    <img class="item-image" ng-src="{{data.imageId}}"/>
     <section>
-        <header data-ng-bind="::data.title"></header>
-        <p data-ng-bind="::data.description"></p>
-        <p>Price: <span data-ng-bind="::data.price"></span></p>
-        <p>Quantity: <span data-ng-bind="::data.amount"></span></p>
+        <header data-ng-bind="data.title"></header>
+        <p data-ng-bind="data.description"></p>
+        <p>Price: <span data-ng-bind="data.price"></span></p>
+        <p>Quantity: <span data-ng-bind="data.amount"></span></p>
     </section>
 </div>

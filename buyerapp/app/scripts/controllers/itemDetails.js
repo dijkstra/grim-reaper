@@ -22,7 +22,7 @@ angular.module('shitForSaleApp')
                 description: 'Fyra jättegoda bullar som vad bakade 10 timmar sedan.'
             };
 
-            $scope.guantity = 1;
+            $scope.quantity = 1;
             StoreService.getStoreById($routeParams.storeId).then(function(store) {
                 console.log("store sss", store);
                 $scope.store = store; //fakeStore;

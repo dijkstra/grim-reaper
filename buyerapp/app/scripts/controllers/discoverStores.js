@@ -5,15 +5,21 @@ angular.module('shitForSaleApp')
         function($scope, StoreService) {
 
             $scope.allStores = {};
+            var s = {};
             StoreService.getAllStores().then(function(data) {
-                $scope.allStores = data;
-                console.log("All Stores", data);
-                data.forEach(function(store) {
+
+                s = data;
+
+                data.forEach(function(store, i) {
+
                     StoreService.getItemsForStore(store._id).then(function(items) {
-                        console.log("All items for store", store.name, data);
-                        store.items = items;
+
+                        s[i].items = items;
+                        if (i === (s.length - 1)) {
+                            $scope.allStores = s;
+                        }
                     }, function() {
-                        console.log('aj då');
+                        console.log('ouch!');
                     });
                 });
             });

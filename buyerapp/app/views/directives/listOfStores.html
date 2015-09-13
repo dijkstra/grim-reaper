@@ -1,6 +1,8 @@
 <ul class='list-of-stores'>
     <li ng-repeat="store in data">
-        <p data-ng-bind="::store.name"></p>
-        <list-of-shit data="store.items" state-ref="{{::stateRef}}"></list-of-shit>
+        <p data-ng-bind="store.name"></p>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        	<list-of-shit data="store.items"></list-of-shit>
+        </div>
     </li>
 </ul>

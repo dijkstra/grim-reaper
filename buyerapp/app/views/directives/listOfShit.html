@@ -1,5 +1,21 @@
-<ul class='list-of-shit'>
-    <li ng-repeat="item in data">
-        <shit-item data="item" state-ref="{{::stateRef}}"></shit-item>
-    </li>
-</ul>
+<div ng-repeat="product in data" class="panel panel-default">
+	<div class="panel-heading" role="tab" id="heading{{$index}}">
+	  <h4 class="panel-title">
+	    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
+	      {{ product.title }} - Price: {{ product.price }} - Quant. {{ product.amount }}
+	    </a>
+	  </h4>
+	</div>
+	<div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
+	  <div class="panel-body">
+	  	<a href="#/stores/{{product.sellerId}}/items/{{product._id}}">
+		  <div class="row">
+		  	<div class="col-xs-4">
+		  		<img ng-src="{{product.imageId}}" style="width: 100%;"/>
+		  	</div>
+		  	<div class="col-xs-8"></div>
+		  </div>
+	  	</a>
+	  </div>
+	</div>
+</div>

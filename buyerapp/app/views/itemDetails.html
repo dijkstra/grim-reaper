@@ -10,7 +10,7 @@
             <div id="payment-form"></div>
             <input name="id" ng-show="false" type="text" ng-model="item._id">
             <input name="price" ng-show="false" type="text" ng-model="totalPrice">
-            <input name="quantity" type="number" ng-change="updatePrice()" ng-model="guantity" min="1" max="{{item.amount}}">
+            <input name="quantity" type="number" ng-change="updatePrice()" ng-model="quantity" min="1" max="{{item.amount}}">
             <input type="submit" value="Pay {{totalPrice}} SEK">
         </form>
     </section>

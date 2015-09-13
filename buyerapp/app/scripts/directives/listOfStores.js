@@ -10,9 +10,6 @@ angular.module('shit.directives.listOfStores', [])
             data: '=',
             stateRef: '@'
         },
-        templateUrl: 'views/directives/listOfStores.html',
-        link: function(scope, element) {
-
-        }
+        templateUrl: 'views/directives/listOfStores.html'
     };
 }]);
