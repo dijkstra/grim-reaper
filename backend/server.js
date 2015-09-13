@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var multiparty = require('multiparty');
 var mime       = require('mime');
 var conf       = require('./conf')
+var $q          = require('q');
 
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/shit');
@@ -12,6 +13,15 @@ var conn       = mongoose.connection;
 var Grid       = require('gridfs-stream');
 Grid.mongo     = mongoose.mongo;
 var gfs;
+
+var braintree = require("braintree");
+
+var gateway = braintree.connect({
+  environment: braintree.Environment.Sandbox,
+  merchantId: "wzzgntxq9gzxhbdq",
+  publicKey: "whhr3nv3txnfpk7p",
+  privateKey: "bf4a192368e60c1b3543e9a7b8d3f34b"
+});
 
 conn.once('open', function () {
     console.log('open');
@@ -53,7 +63,7 @@ router.use(function(req, res, next) {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Methods', 'POST, PUT, GET, OPTIONS');
   res.set('Access-Control-Allow-Headers', 'content-type');
-  
+
   next();
 });
 
@@ -61,7 +71,67 @@ router.use(function(req, res, next) {
 // APIs
 // #############################
 router.get('/', function(req, res) {
-  res.json({ message: 'hooray! welcome to our api!' });   
+  res.json({ message: 'hooray! welcome to our api!' });
+});
+
+// PAYMENT AND SO ON!
+router.route('/client_token')
+.get(function(req, res) {
+  gateway.clientToken.generate({}, function (err, response) {
+    res.send(response.clientToken);
+  });
+});
+
+function makeTransaction(transaction) {
+  var deferred = $q.defer();
+
+  gateway.transaction.sale({
+    amount: transaction.amount,
+    paymentMethodNonce: transaction.nonce,
+  }, function (err, result) {
+    if (err)
+      deferred.reject(err);
+    deferred.resolve(result);
+  });
+
+  return deferred.promise;
+}
+
+router.route('/payment-methods').post(function(req, res) {
+
+  var nonce = req.body.payment_method_nonce;
+  // Use payment method nonce here
+});
+
+function updateItemById(id, fields) {
+  var deferred = $q.defer();
+
+  Item.update({_id: id}, fields, function(err) {
+    if (err)
+      deferred.reject(err);
+    deferred.resolve();
+  });
+  return deferred.promise;
+}
+
+router.route('/checkout')
+// Collect
+.post(function(req, res) {
+
+  Item.findById(req.body.id, function(err, item) {
+    if (err) {
+      res.send(err);
+    } else if (item.amount < req.body.quantity) {
+      res.status(404)
+         .send('Out of stock');
+    }
+
+    var newAmount = item.amount - req.body.quantity;
+    updateItemById(item._id, { 'amount': newAmount })
+      .then(function() {
+        res.send();
+      }).fail(res.send);
+  });
 });
 
 
@@ -109,7 +179,7 @@ router.route('/sellers/:id/items')
   Seller.findById(req.params.id, function(err, seller) {
     if (err)
       res.send(err);
-    
+
     Item.findBySellerId(seller._id, function(err, items) {
       if (err)
         console.log(err);
@@ -183,7 +253,7 @@ router.route('/images')
   var form = new multiparty.Form();
 
   form.parse(req, function(err, fields, files) {
-    
+
     console.log(fields);
     console.log(files);  //Remember: this assumes the files contains a property called "image"
     if (files.image.length > 0) {
@@ -197,7 +267,7 @@ router.route('/images')
         filename: file.originalFilename
       });
       fs.createReadStream(file.path).pipe(writestream);
-   
+
       writestream.on('close', function (savedfile) {
           // do something with `file`
           console.log(savedfile.filename + 'Written To DB');

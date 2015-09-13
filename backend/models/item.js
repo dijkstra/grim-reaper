@@ -23,6 +23,7 @@ var ItemSchema = new Schema({
   //   required: true
   // },
   imageId: String,
+  imageUrl: String,
   description: String,
   startTime: Date,
   endTime: {
