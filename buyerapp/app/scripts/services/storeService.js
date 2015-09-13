@@ -32,7 +32,7 @@ angular.module('shit.services.StoreService',[])
             }
         }, function (data) {
             data.forEach(function (item) {
-                item.description = 'Fyra jättegoda bullar som vad bakade 10 timmar sedan.';
+                // item.description = 'Fyra jättegoda bullar som vad bakade 10 timmar sedan.';
                 item.startTime = new Date(item.startTime);
                 item.endTime = new Date(item.endTime);
             });
