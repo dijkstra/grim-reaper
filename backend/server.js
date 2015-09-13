@@ -201,7 +201,7 @@ router.route('/sellers/:id/items')
         // console.log(err);
       var currentTime = new Date();
       var filterdItems = items.filter(function(item) {
-        return item.amount > 0 && item.endDate > currentTime
+        return item.amount > 0;
       });
       filterdItems.forEach(function (item) {
         transformImageUrl(item);
