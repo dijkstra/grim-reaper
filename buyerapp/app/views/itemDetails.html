@@ -4,8 +4,10 @@
 
         <header><span class="storename" data-ng-bind="store.name"></span> - <span data-ng-bind="item.title"></span></header>
         <p data-ng-bind="item.description"></p>
-        <p>Current Price: <span data-ng-bind="price | number : 2 "></span> SEK</p>
-        <p>Offer ends at: <span data-ng-bind="item.endTime | date:'MMM dd, HH:mm'"></span></p>
+        <p>Current Price Each: <span data-ng-bind="price | number : 2 "></span> SEK</p>
+        <!-- <p>Offer ends in: <span data-ng-bind="timeUntil(currentTime)"></span></p> -->
+
+        <p>Offer Ends At: <span data-ng-bind="item.endTime | date:'MMM dd, HH:mm'"></span></p>
     </section>
     <!-- <form class="pay-form col-xs-12" ng-submit="submit()"> -->
     <!-- <form class="pay-form col-xs-12" method="post" action="http://localhost:8080/api/checkout"> -->
