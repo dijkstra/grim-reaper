@@ -4,7 +4,7 @@
 
         <header><span class="storename" data-ng-bind="store.name"></span> - <span data-ng-bind="item.title"></span></header>
         <p data-ng-bind="item.description"></p>
-        <p>Current Price: <span data-ng-bind="item.price"></span> SEK</p>
+        <p>Current Price: <span data-ng-bind="price"></span> SEK</p>
         <p>Offer ends at: <span data-ng-bind="item.endTime | date:'MMM dd, HH:mm'"></span></p>
     </section>
     <!-- <form class="pay-form col-xs-12" ng-submit="submit()"> -->
@@ -12,7 +12,8 @@
     <form class="pay-form col-xs-12" method="post" action="http://146.148.25.35/api/checkout" >
         <div id="payment-form"></div>
         <input name="id" ng-show="false" type="text" ng-model="item._id">
-        <input name="price" ng-show="false" type="text" ng-model="totalPrice">
+        <input name="id" ng-show="false" type="text" ng-model="item._id">
+        <input name="redirectPage" ng-show="false" value="http://172.16.90.94:9000/#/success" type="text">
         Quantity: <input class="quantity" name="quantity" type="number" ng-change="updatePrice()" ng-model="quantity" min="1" max="{{item.amount}}"> / <span data-ng-bind="item.amount"></span>
         <input class="pay-button" type="submit" value="Pay {{totalPrice}} SEK">
     </form>
