@@ -8,7 +8,7 @@
  * Controller of the hackApp
  */
 angular.module('hackApp')
-  .controller('NewProductCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('NewProductCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
   	$scope.pictureTaken = false;
   	$scope.picture = null;
   	$scope.pictureURL = '';
@@ -104,6 +104,7 @@ angular.module('hackApp')
                     }).then(function (response) {
                         console.log('Success!!!');
                         console.log(response);
+                        $location.path('products');
                     }, function (response) {
                         console.log("Failure man");
                     });
