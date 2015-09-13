@@ -8,7 +8,7 @@
 	</div>
 	<div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
 	  <div class="panel-body">
-	  	<a href="#/stores/{{product.sellerId}}/items/{{product._id}}">
+	  	<a href="#/stores/{{product.sellerId}}/items/{{product._id}}?price={{product.finalPrice}}">
 		  <div class="row">
 		  	<div class="col-xs-4">
 		  		<img ng-src="{{product.imageId}}" style="width: 100%;"/>
