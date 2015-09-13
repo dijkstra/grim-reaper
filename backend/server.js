@@ -143,7 +143,7 @@ router.route('/checkout')
     return reductQuanitity(req.body);
   })
   .then(function() {
-    res.redirect('http://0.0.0.0:9000/#/success');
+    res.redirect(req.body.redirectPage);
     // res.send();
   }).fail(res.send);
 
@@ -201,7 +201,7 @@ router.route('/sellers/:id/items')
         // console.log(err);
       var currentTime = new Date();
       var filterdItems = items.filter(function(item) {
-        return item.amount > 0 && item.endDate > currentTime
+        return item.amount > 0;
       });
       filterdItems.forEach(function (item) {
         transformImageUrl(item);
