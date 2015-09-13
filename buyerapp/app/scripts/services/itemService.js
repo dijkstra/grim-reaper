@@ -14,6 +14,8 @@ angular.module('shit.services.ItemService',[])
             console.log(data);
             data.forEach(function (item) {
                 item.description = 'Fyra jättegoda bullar som vad bakade 10 timmar sedan.';
+                item.startTime = new Date(item.startTime);
+                item.endTime = new Date(item.endTime);
             });
         });
     }
@@ -27,6 +29,8 @@ angular.module('shit.services.ItemService',[])
             }
         }, function (item) {
             item.description = 'Fyra jättegoda bullar som vad bakade 10 timmar sedan.';
+            item.startTime = new Date(item.startTime);
+            item.endTime = new Date(item.endTime);
         });
     }
 
