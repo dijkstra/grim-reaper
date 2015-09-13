@@ -143,7 +143,7 @@ router.route('/checkout')
     return reductQuanitity(req.body);
   })
   .then(function() {
-    res.redirect('http://0.0.0.0:9000/#/success');
+    res.redirect(req.body.redirectPage);
     // res.send();
   }).fail(res.send);
 
