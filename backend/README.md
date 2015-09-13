@@ -37,7 +37,48 @@ curl     http://localhost:8080/api/sellers/55f434732475640000000001/items
 
 post images
 
-curl -v -X POST -F "image=@/Users/wallenius/Downloads/walter.jpg" http://146.148.25.35/api/images
+curl -v -X POST -F "image=@/Users/wallenius/Downloads/Battlehack/kanelbulle-recept.jpg" http://146.148.25.35/api/images
+55f528c5eb3d2f5b51000001
+
+curl -X POST -F "image=@/Users/wallenius/Downloads/Battlehack/kottbullemacka_01.jpg" http://146.148.25.35/api/images
+55f5291feb3d2f5b51000003
+
+curl -X POST -F "image=@/Users/wallenius/Downloads/Battlehack/peppes limpa.JPG" http://146.148.25.35/api/images
+55f5291feb3d2f5b51000005
+
+curl -X POST -F "image=@/Users/wallenius/Downloads/Battlehack/shrimpsandwish-2.jpg" http://146.148.25.35/api/images
+55f5291feb3d2f5b51000008
+
+curl -X POST -F "image=@/Users/wallenius/Downloads/Battlehack/smorgastarta.jpg" http://146.148.25.35/api/images
+55f52920eb3d2f5b5100000a
+
+curl -X POST -F "image=@/Users/wallenius/Downloads/Battlehack/vallmo-frallor.jpg" http://146.148.25.35/api/images
+55f52920eb3d2f5b51000010
+
+
+
+
+{
+    "_id" : ObjectId("55f442927ddd3ada0a000001"),
+    "address" : "Riddargatan 4",
+    "name" : "Konditori Sturekatten",
+}
+{
+    "_id" : ObjectId("55f442ab7ddd3ada0a000002"),
+    "address" : "Drottninggatan 81",
+    "name" : "Espresso House",
+}
+{
+    "_id" : ObjectId("55f52a9a57190cdedef2aade"),
+    "address" : "Kungsgatan 14",
+    "name" : "Cafe Vurma",
+}
+
+
+
+
+
+
 
 
 

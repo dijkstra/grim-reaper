@@ -1,8 +1,9 @@
 <ul class='list-of-stores'>
     <li ng-repeat="store in data">
-        <p data-ng-bind="store.name"></p>
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <h2>{{store.name}} <small>{{store.address}}</small> </h2>
+        <!-- <p ></p> -->
+        <!-- <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"> -->
         	<list-of-shit data="store.items"></list-of-shit>
-        </div>
+        <!-- </div> -->
     </li>
 </ul>

@@ -1,22 +1,19 @@
-<div ng-repeat="product in data" class="panel panel-default">
-	<div class="panel-heading" role="tab" id="heading{{$index}}">
-	  <h4 class="panel-title">
-	    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapse{{$index}}">
-	      {{ product.title }} - Price: {{ product.finalPrice | number : 2 }} - Quant. {{ product.amount }}
-	    </a>
-	  </h4>
-	</div>
-	<div id="collapse{{$index}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{$index}}">
-	  <div class="panel-body">
-	  	<a href="#/stores/{{product.sellerId}}/items/{{product._id}}?price={{product.finalPrice}}">
-		  <div class="row">
-		  	<div class="col-xs-4">
-		  		<img ng-src="{{product.imageId}}" style="width: 100%;"/>
-		  	</div>
-		  	<div class="col-xs-8">
-		  	</div>
-		  </div>
-	  	</a>
-	  </div>
-	</div>
+
+
+
+<div class="row">
+  <div ng-repeat="product in data" class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img src="{{product.imageId}}" style="height: 200px; width: 100%; display: block;">
+      <div class="caption">
+        <h3>{{ product.title }}</h3>
+        <ul class="list-group">
+				  <li class="list-group-item">Items left: {{ product.amount }}</li>
+				  <li class="list-group-item">Current price each: {{ product.finalPrice | number : 2 }}</li>
+				</ul>
+        <p><a href="#/stores/{{product.sellerId}}/items/{{product._id}}?price={{product.finalPrice}}" class="btn btn-primary" role="button">Buy now!</a></p>
+      </div>
+    </div>
+  </div>
 </div>
+
