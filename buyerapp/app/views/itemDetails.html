@@ -1,16 +1,17 @@
-<div class="item-details" ng-click="selectItem">
-    <img class="item-image" ng-src="{{::item.imageId}}"/>
+<div class="item-details row" ng-click="selectItem">
+    <img class="item-image col-xs-4" ng-src="{{::item.imageId}}"/>
     <section>
         <header data-ng-bind="::item.title"></header>
         <p data-ng-bind="::item.description"></p>
-        <p>Price: <span data-ng-bind="::item.price"></span></p>
+        <p>Current Price: <span data-ng-bind="::item.price"></span> SEK</p>
         <p>Quantity: <span data-ng-bind="::item.amount"></span></p>
 
-
-        <form id="checkout" method="post" action="/checkout">
+        <form ng-submit="submit()">
             <div id="payment-form"></div>
-            <input type="number" ng-change="updatePrice()" ng-model="quantity" min="1" max="{{item.amount}}" value="1">
-            <input type="submit" value="Pay {{totalPrice}}">
+            <input name="id" ng-show="false" type="text" ng-model="item._id">
+            <input name="price" ng-show="false" type="text" ng-model="totalPrice">
+            <input name="quantity" type="number" ng-change="updatePrice()" ng-model="guantity" min="1" max="{{item.amount}}">
+            <input type="submit" value="Pay {{totalPrice}} SEK">
         </form>
     </section>
 </div>

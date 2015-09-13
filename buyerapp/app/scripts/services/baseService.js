@@ -4,6 +4,8 @@ angular.module('shit.services.BaseService',[])
 .service('BaseService', ['$q','$http', function($q, $http) {
 
     var APIBASE = "http://146.148.25.35/api";
+    // var APIBASE = "http://localhost:8080/api";
+
     function httpGet(options, dataTransformer) {
 
         var deferred = $q.defer();

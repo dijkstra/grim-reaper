@@ -9,8 +9,7 @@ angular.module('shitForSaleApp')
                 $scope.allStores = data;
                 console.log("All Stores", data);
                 data.forEach(function(store) {
-                    console.log("get items");
-                    StoreService.getItemsForStore(data._id).then(function(items) {
+                    StoreService.getItemsForStore(store._id).then(function(items) {
                         console.log("All items for store", store.name, data);
                         store.items = items;
                     }, function() {

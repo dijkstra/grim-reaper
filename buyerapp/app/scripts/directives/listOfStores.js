@@ -12,11 +12,7 @@ angular.module('shit.directives.listOfStores', [])
         },
         templateUrl: 'views/directives/listOfStores.html',
         link: function(scope, element) {
-            // console.log("Scopes data", scope.data);
+
         }
-        // controller: ['$scope', '$element', '$window',  function($scope, $element, $window) {
-
-
-        // }]
     };
 }]);

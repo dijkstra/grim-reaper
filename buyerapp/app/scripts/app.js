@@ -50,30 +50,3 @@ angular
         redirectTo: '/'
       });
   });
-
-  // .config(['$stateProvider', '$urlRouterProvider','$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
-
-
-
-
-  //       $stateProvider.state('index', {
-  //           url: '/',
-  //           templateUrl: 'partials/main',
-  //           controller: 'DiscoveryCtrl'
-  //       });
-
-  //       $urlRouterProvider.otherwise(function($injector, $location){
-  //           // This is triggered when you you cant find a state.
-
-  //           $injector.invoke(['$state', '$log', function($state, $log) {
-  //               $log.info('404 Page not Found.', $location.$$url);
-  //               $state.go('404');
-  //           }]);
-  //       });
-
-  //       $stateProvider.state('404', {
-  //           templateUrl: 'partials/notFound'
-  //       });
-
-  //       $locationProvider.html5Mode(true);
-  //   }]);
