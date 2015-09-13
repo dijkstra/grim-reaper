@@ -9,6 +9,8 @@
  */
 angular.module('hackApp')
   .controller('NewProductCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+    var APIBASE = "http://146.148.25.35/api";
   	$scope.pictureTaken = false;
   	$scope.picture = null;
   	$scope.pictureURL = '';
@@ -48,7 +50,7 @@ angular.module('hackApp')
                 // Revoke ObjectURL after imagehas loaded
                 angular.element('#productPicturePreview').bind('onload', function(e) {
                 	console.log("loading completed");
-                    URL.revokeObjectURL(imgURL);  
+                    URL.revokeObjectURL(imgURL);
                 });
             } catch (e) {
                 try {
@@ -76,17 +78,17 @@ angular.module('hackApp')
         if ($scope.fileToUpload) {
             var fd = new FormData();
             fd.append("image", $scope.fileToUpload);
-            
+
             var req = {
              method: 'POST',
-             url: 'http://146.148.25.35/api/images/',
+             url: APIBASE +'/images/',
              headers: {
                'Content-Type': 'multipart/form-data'
              },
              data: fd
             }
 
-            $http.post('http://146.148.25.35/api/images', fd, {
+            $http.post(APIBASE + '/images', fd, {
                         headers: {'Content-Type': undefined }
                     }).
                   then(function(response) {
@@ -94,9 +96,9 @@ angular.module('hackApp')
                     // when the response is available
                     console.log("SUCCESS");
                     // then save the form man
-                    $http.post('http://146.148.25.35/api/items', {
-                        "title" : $scope.productName, 
-                        "endTime" : "2015-09-12T19:00:00Z", 
+                    $http.post(APIBASE + '/items', {
+                        "title" : $scope.productName,
+                        "endTime" : "2015-09-12T19:00:00Z",
                         "price" : $scope.productStartPrice,
                         "amount" : $scope.productAmount,
                         "sellerId" : "55f442927ddd3ada0a000001",

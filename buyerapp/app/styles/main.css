@@ -121,6 +121,10 @@ body {
     margin-bottom: 20px;
 }
 
+.item-details > section > header > .storename {
+    font-weight: bold;
+}
+
 .item-image {
     max-width: 100%;
     max-height: 250px;
