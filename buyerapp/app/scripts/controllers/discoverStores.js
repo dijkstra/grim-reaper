@@ -15,6 +15,6 @@ angular.module('shitForSaleApp')
                     }, function() {
                         console.log('aj då');
                     });
-                })
+                });
             });
         }]);
