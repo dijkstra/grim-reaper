@@ -108,22 +108,25 @@ function updateItemById(id, fields) {
   return deferred.promise;
 }
 
-function reductQuanitity() {
+function reductQuanitity(itemData) {
+
+  console.log('reductQuanitity');
+  console.log(itemData);
 
   var deferred = $q.defer();
-  Item.findById(req.body.id, function(err, item) {
+  Item.findById(itemData.id, function(err, item) {
     if (err) {
-      res.send(err);
-    } if (!item) {
-
+      throw err;
+    } 
+    if (!item) {
       res.status(404).send('Item not found');
-    } else if (item.amount < req.body.quantity) {
+      return;
+    } else if (item.amount < itemData.quantity) {
+      res.status(404).send('Out of stock');
+      return;
+    } 
 
-      res.status(404)
-         .send('Out of stock');
-    }
-
-    var newAmount = item.amount - req.body.quantity;
+    var newAmount = item.amount - itemData.quantity;
     updateItemById(item._id, { 'amount': newAmount })
       .then(deferred.resolve).fail(deferred.reject);
   });
@@ -136,9 +139,11 @@ router.route('/checkout')
 .post(function(req, res) {
 
   makeTransaction(req.body)
-  // .then(reductQuanitity)
+  .then(function () {
+    return reductQuanitity(req.body);
+  })
   .then(function() {
-    res.redirect('success.html');
+    res.redirect('http://0.0.0.0:9000/#/success');
     // res.send();
   }).fail(res.send);
 

@@ -16,6 +16,21 @@
 
     <!-- </div> -->
   </div>
+  
+  <div class="form-group">
+      <label for="productStartDate">Start Date-Time</label>
+      <div class='input-group date' id='datetimepicker1'>
+          <input id="productStartDate" type='text' class="form-control" ng-model="endTime"/>
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+      </div>
+  </div>
+  <script type="text/javascript">
+      $(function () {
+          $('#datetimepicker1').datetimepicker({ focusOnShow: false});
+      });
+  </script>
   <div class="form-group">
     <label for="productStartPrice">Starting Price</label>
     <input type="number" class="form-control" id="productStartPrice" placeholder="Starting Price in SEK" ng-model="productStartPrice">
