@@ -11,22 +11,24 @@ angular.module('hackApp')
   .controller('NewProductCtrl', ['$scope', '$http', '$location', function ($scope, $http, $location) {
 
     var APIBASE = "http://146.148.25.35/api";
+
+    $scope.productName = 'Bread Buns';
+    $scope.productAmount = 3;
+    
+    var now = new Date();
+    now.setHours(((now.getHours() + 11) % 12 + 1) + 2);
+    $scope.endTime =  (now.getMonth() + 1) + '/' + 
+                      now.getDate() + '/' + 
+                      now.getFullYear() + ' ' +
+                      now.getHours() + ':' +
+                      now.getMinutes();
+    $scope.productStartPrice = 50;
+    $scope.productFinalPrice = 0;
+
   	$scope.pictureTaken = false;
   	$scope.picture = null;
   	$scope.pictureURL = '';
     $scope.previewImage = function(event) {
-
-        // // Upload Image
-        // var fd = new FormData();
-        // //Take the first selected file
-        // fd.append("file", event.files[0]);
-
-        // $http.post(uploadUrl, fd, {
-        //     withCredentials: true,
-        //     headers: {'Content-Type': undefined },
-        //     transformRequest: angular.identity
-        // }).success( ...all right!... ).error( ..damn!... );
-
 
     	// Get a reference to the taken picture or chosen file
     	console.log("Previewing image", event.files);
@@ -98,7 +100,7 @@ angular.module('hackApp')
                     // then save the form man
                     $http.post(APIBASE + '/items', {
                         "title" : $scope.productName,
-                        "endTime" : "2015-09-12T19:00:00Z",
+                        "endTime" : $scope.endTime,
                         "price" : $scope.productStartPrice,
                         "amount" : $scope.productAmount,
                         "sellerId" : "55f442927ddd3ada0a000001",
