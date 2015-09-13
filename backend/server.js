@@ -126,7 +126,7 @@ function reductQuanitity(itemData) {
       return;
     } 
 
-    var newAmount = item.amount - req.body.quantity;
+    var newAmount = item.amount - itemData.quantity;
     updateItemById(item._id, { 'amount': newAmount })
       .then(deferred.resolve).fail(deferred.reject);
   });
