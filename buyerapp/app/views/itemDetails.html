@@ -1,16 +1,19 @@
 <div class="item-details row" ng-click="selectItem">
     <img class="item-image col-xs-4" ng-src="{{::item.imageId}}"/>
-    <section>
-        <header data-ng-bind="item.title"></header>
+    <section class="col-xs-8">
+
+        <header><span class="storename" data-ng-bind="store.name"></span> - <span data-ng-bind="item.title"></span></header>
         <p data-ng-bind="item.description"></p>
         <p>Current Price: <span data-ng-bind="item.price"></span> SEK</p>
-
-        <form class="pay-form" method="post" action="http://146.148.25.35/api/checkout" ><!-- action="http://localhost:8080/api/checkout" > --><!-- ng-submit="submit(this)"> -->
-            <div id="payment-form"></div>
-            <input name="id" ng-show="false" type="text" ng-model="item._id">
-            <input name="price" ng-show="false" type="text" ng-model="totalPrice">
-            Quantity: <input class="quantity" name="quantity" type="number" ng-change="updatePrice()" ng-model="quantity" min="1" max="{{item.amount}}"> / <span data-ng-bind="item.amount"></span>
-            <input class="pay-button" type="submit" value="Pay {{totalPrice}} SEK">
-        </form>
+        <p>Offer ends at: <span data-ng-bind="item.endTime | date:'MMM dd, HH:mm'"></span></p>
     </section>
+    <!-- <form class="pay-form col-xs-12" ng-submit="submit()"> -->
+    <!-- <form class="pay-form col-xs-12" method="post" action="http://localhost:8080/api/checkout"> -->
+    <form class="pay-form col-xs-12" method="post" action="http://146.148.25.35/api/checkout" >
+        <div id="payment-form"></div>
+        <input name="id" ng-show="false" type="text" ng-model="item._id">
+        <input name="price" ng-show="false" type="text" ng-model="totalPrice">
+        Quantity: <input class="quantity" name="quantity" type="number" ng-change="updatePrice()" ng-model="quantity" min="1" max="{{item.amount}}"> / <span data-ng-bind="item.amount"></span>
+        <input class="pay-button" type="submit" value="Pay {{totalPrice}} SEK">
+    </form>
 </div>

@@ -138,7 +138,8 @@ router.route('/checkout')
   makeTransaction(req.body)
   // .then(reductQuanitity)
   .then(function() {
-    res.send();
+    res.redirect('success.html');
+    // res.send();
   }).fail(res.send);
 
 });

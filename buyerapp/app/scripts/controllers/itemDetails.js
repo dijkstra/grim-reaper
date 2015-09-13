@@ -47,23 +47,23 @@ angular.module('shitForSaleApp')
                 });
             });
 
-            // $scope.submit = function(a) {
+            $scope.submit = function() {
+                var elem = angular.element("input[name='payment_method_nonce']");
+                console.log(angular.element("input[name='payment_method_nonce']"));
 
-            //     console.log(angular.element("#"));
+                var data = {
+                    id: $scope.item._id,
+                    price: $scope.totalPrice,
+                    quantity: $scope.quantity,
+                    payment_method_nonce: elem.val()
+                };
 
-            //     var data = {
-            //         id: $scope.item._id,
-            //         price: $scope.totalPrice,
-            //         quantity: $scope.quantity,
-            //         // payment_method_nonce:
-            //     };
-
-            //     PayService.buyItem(data)
-            //         .then(function() {
-            //             // TODO: Do something.
-            //             console.log("item was bought!");
-            //         }, function(err) {
-            //             console.log('Failed to buy item', err);
-            //         });
-            // };
+                PayService.buyItem(data)
+                    .then(function() {
+                        // TODO: Do something.
+                        console.log("item was bought!");
+                    }, function(err) {
+                        console.log('Failed to buy item', err);
+                    });
+            };
         }]);
