@@ -83,11 +83,12 @@ router.route('/client_token')
 });
 
 function makeTransaction(transaction) {
+
   var deferred = $q.defer();
 
   gateway.transaction.sale({
-    amount: transaction.amount,
-    paymentMethodNonce: transaction.nonce,
+    amount: transaction.quantity,
+    paymentMethodNonce: transaction.payment_method_nonce
   }, function (err, result) {
     if (err)
       deferred.reject(err);
@@ -97,15 +98,8 @@ function makeTransaction(transaction) {
   return deferred.promise;
 }
 
-router.route('/payment-methods').post(function(req, res) {
-
-  var nonce = req.body.payment_method_nonce;
-  // Use payment method nonce here
-});
-
 function updateItemById(id, fields) {
   var deferred = $q.defer();
-
   Item.update({_id: id}, fields, function(err) {
     if (err)
       deferred.reject(err);
@@ -114,24 +108,39 @@ function updateItemById(id, fields) {
   return deferred.promise;
 }
 
-router.route('/checkout')
-// Collect
-.post(function(req, res) {
+function reductQuanitity() {
 
+  var deferred = $q.defer();
   Item.findById(req.body.id, function(err, item) {
     if (err) {
       res.send(err);
+    } if (!item) {
+
+      res.status(404).send('Item not found');
     } else if (item.amount < req.body.quantity) {
+
       res.status(404)
          .send('Out of stock');
     }
 
     var newAmount = item.amount - req.body.quantity;
     updateItemById(item._id, { 'amount': newAmount })
-      .then(function() {
-        res.send();
-      }).fail(res.send);
+      .then(deferred.resolve).fail(deferred.reject);
   });
+
+  return deferred.promise;
+}
+
+router.route('/checkout')
+// Collect
+.post(function(req, res) {
+
+  makeTransaction(req.body)
+  // .then(reductQuanitity)
+  .then(function() {
+    res.send();
+  }).fail(res.send);
+
 });
 
 

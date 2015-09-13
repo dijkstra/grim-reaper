@@ -35,20 +35,9 @@ angular.module('shit.services.ItemService',[])
         });
     }
 
-    function buyItem(data, params) {
-        return BaseService.httpPost({
-            url: '/checkout',
-            httpOpts: {
-                params: params
-            },
-            body: data
-        });
-    }
-
     return {
         getAllItems: getAllItems,
-        getItemById: getItemById,
-        buyItem: buyItem,
+        getItemById: getItemById
     };
 
 }]);

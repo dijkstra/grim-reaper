@@ -21,7 +21,8 @@ angular
     'shit.directives.shitItem',
     'shit.services.BaseService',
     'shit.services.ItemService',
-    'shit.services.StoreService'
+    'shit.services.StoreService',
+    'shit.services.PayService'
   ])
   .config(function ($routeProvider) {
     $routeProvider

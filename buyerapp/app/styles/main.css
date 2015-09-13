@@ -102,7 +102,7 @@ body {
 }
 
 .list-of-stores > li > p {
-    
+
     font-size: 22px;
 }
 
@@ -117,8 +117,16 @@ body {
     /*background-color: yellow;*/
 }
 
+.item-details > img {
+    margin-bottom: 20px;
+}
+
 .item-image {
     max-width: 100%;
     max-height: 250px;
 }
 
+.pay-form > .pay-button {
+
+    margin: 20px;
+}

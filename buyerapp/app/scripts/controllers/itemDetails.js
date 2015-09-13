@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('shitForSaleApp')
-    .controller('ItemDetailsCtrl', ['$scope', '$routeParams', 'StoreService', 'ItemService',
-        function($scope, $routeParams, StoreService, ItemService) {
+    .controller('ItemDetailsCtrl', ['$scope', '$routeParams', 'StoreService', 'ItemService', 'PayService',
+        function($scope, $routeParams, StoreService, ItemService, PayService) {
             var fakeStore = {
                 _id: "55f442927ddd3ada0a000001",
                 description: "0",
@@ -18,19 +18,18 @@ angular.module('shitForSaleApp')
                 sellerId: "55f442927ddd3ada0a000001",
                 title: "Walle",
                 startTime: new Date(),
-                endTime: new Date(),
                 description: 'Fyra jättegoda bullar som vad bakade 10 timmar sedan.'
             };
 
             $scope.quantity = 1;
             StoreService.getStoreById($routeParams.storeId).then(function(store) {
-                console.log("store sss", store);
-                $scope.store = store; //fakeStore;
+                console.log("store", store);
+                $scope.store = fakeStore;
             });
 
             ItemService.getItemById($routeParams.itemId).then(function(item) {
                 console.log("item recived", item);
-                $scope.item = item; //fakeItem;
+                $scope.item = item;
                 $scope.updatePrice();
             }, function(err) {
                 console.log("error", err);
@@ -42,20 +41,29 @@ angular.module('shitForSaleApp')
             // $scope.item = fakeItem;
             // $scope.updatePrice();
 
-            $scope.submit = function() {
+            PayService.getToken().then(function(clientToken) {
+                braintree.setup(clientToken, "dropin", {
+                    container: "payment-form"
+                });
+            });
 
-                var data = {
-                    id: $scope.item._id,
-                    price: $scope.totalPrice,
-                    quantity: $scope.quantity
-                };
+            // $scope.submit = function(a) {
 
-                ItemService.buyItem(data)
-                    .then(function() {
-                        // TODO: Do something.
-                        console.log("item was bought!");
-                    }, function(err) {
-                        console.log('Failed to buy item', err);
-                    });
-            };
+            //     console.log(angular.element("#"));
+
+            //     var data = {
+            //         id: $scope.item._id,
+            //         price: $scope.totalPrice,
+            //         quantity: $scope.quantity,
+            //         // payment_method_nonce:
+            //     };
+
+            //     PayService.buyItem(data)
+            //         .then(function() {
+            //             // TODO: Do something.
+            //             console.log("item was bought!");
+            //         }, function(err) {
+            //             console.log('Failed to buy item', err);
+            //         });
+            // };
         }]);
