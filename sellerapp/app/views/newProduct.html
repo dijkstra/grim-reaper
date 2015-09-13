@@ -12,7 +12,7 @@
     <input type="file" id="productPicture" accept="image/*" onchange="angular.element(this).scope().previewImage(this)"/>
     <p class="help-block">Take a picture of the product</p>
     <!-- <div ng-show="pictureTaken" class="pictureContainer"> -->
-    	<img id="productPicturePreview" src="{{pictureURL}}"/>
+    	<img ng-show="pictureTaken" id="productPicturePreview" src="{{pictureURL}}"/>
 
     <!-- </div> -->
   </div>
@@ -24,5 +24,5 @@
     <label for="productFinalPrice">Final Price</label>
     <input type="number" class="form-control" id="productFinalPrice" placeholder="Final Price in SEK" ng-model="productFinalPrice">
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button id="submitnew" type="submit" class="btn btn-primary">Save</button>
 </form>

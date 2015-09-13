@@ -8,7 +8,9 @@
 body {
   padding: 0;
 }
-
+.productItem {
+  background-color: lightyellow;
+}
 .pictureContainer {
   width: 400px;
   height: 400px;
@@ -17,6 +19,22 @@ body {
 
 #productPicturePreview {
   max-width: 100%;
+}
+
+#submitnew {
+  width: 100%;
+  font-size: 18px;
+  letter-spacing: 10px;
+}
+
+#productAttrs {
+  list-style: none;
+  padding: 5px;
+}
+
+#productAttrs > li {
+  font-size: 18px;
+  padding-top: 10px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
